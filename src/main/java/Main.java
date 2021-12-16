@@ -8,9 +8,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("ex.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+    	Parent root = loader.load();
         
-        primaryStage.setTitle("JavaFX Example");
+    	
+        primaryStage.setTitle("Votazione Online");
         primaryStage.setScene(new Scene(root, 400, 300));
         primaryStage.show();
     }
