@@ -5,6 +5,8 @@ import java.util.ResourceBundle;
 
 import data.Page;
 import data.Status;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -50,10 +52,38 @@ public class ControllerMain extends Controller {
 			e.printStackTrace();
 		}
 		
+		try {
+			Page myData = new Page("I miei dati", "../myData.fxml");
+			//Controller myDataController = myData.getController();
+			//myDataController.setStato(status);
+			//myDataController.initData();
+			items.add(myData);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			Page vota = new Page("Vota", "../workInProgress.fxml");
+			items.add(vota);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		if (items.size() > 0) {
 			actions.getSelectionModel().select(0);
 			page.getChildren().add(items.get(0).getContent());
 		}
+		
+		actions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Page>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Page> observable, Page oldValue, Page newValue) {
+				page.getChildren().clear();
+				if(newValue != null && newValue.getContent() != null) {
+					page.getChildren().add(newValue.getContent());
+				}
+			}
+		});
 	}
 
 }

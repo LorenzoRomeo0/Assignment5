@@ -20,10 +20,10 @@
 		<RowConstraints maxHeight="1.7976931348623157E308" minHeight="125.0" vgrow="SOMETIMES" />
 	</rowConstraints>
 	<children>
-		<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" />
-		<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1">
+		<AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
+		<AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
 			<children>
-				<HBox alignment="CENTER_RIGHT" layoutX="-21.0" layoutY="-25.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+				<HBox alignment="CENTER_RIGHT" layoutX="-21.0" layoutY="-25.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 					<children>
 						<Text fx:id="userType" strokeType="OUTSIDE" strokeWidth="0.0" text="USER TYPE">
                      <font>
@@ -38,9 +38,9 @@
 		</AnchorPane>
 		<AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
 			<children>
-				<ListView fx:id="actions" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: yellow;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+				<ListView fx:id="actions" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="page" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: blue;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+		<AnchorPane fx:id="page" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 	</children>
 </GridPane>
