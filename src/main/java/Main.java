@@ -1,3 +1,5 @@
+import controller.Controller;
+import data.Status;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,11 +11,19 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-    	Parent root = loader.load();
-        
+        Parent root = loader.load();
+        Controller controller = loader.getController();
+    	controller.setStato(new Status("dianka", "mevan", "23 luglio 2000", "italiana", "frndkm00l23f205a", "admin"));
+    	controller.initData();
+    	
+    	primaryStage.setMinWidth(300);
+    	primaryStage.setMinHeight(250);
+    	
+    	primaryStage.setWidth(500);
+    	primaryStage.setHeight(450);
     	
         primaryStage.setTitle("Votazione Online");
-        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.setScene(new Scene(root, 500, 450));
         primaryStage.show();
     }
 
@@ -21,4 +31,5 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
 }
