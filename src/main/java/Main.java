@@ -13,11 +13,11 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
-    	controller.setStato(new Status("dianka", "mevan", "23 luglio 2000", "italiana", "frndkm00l23f205a", "admin"));
+    	controller.setStato(new Status("dianka mevan", "fernando", "23 luglio 2000", "italiana", "frndkm00l23f205a", "admin"));
     	controller.initData();
     	
-    	primaryStage.setMinWidth(300);
-    	primaryStage.setMinHeight(250);
+    	primaryStage.setMinWidth(500);
+    	primaryStage.setMinHeight(400);
     	
     	primaryStage.setWidth(500);
     	primaryStage.setHeight(450);

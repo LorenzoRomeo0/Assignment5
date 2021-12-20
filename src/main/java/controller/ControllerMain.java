@@ -54,9 +54,9 @@ public class ControllerMain extends Controller {
 		
 		try {
 			Page myData = new Page("I miei dati", "../myData.fxml");
-			//Controller myDataController = myData.getController();
-			//myDataController.setStato(status);
-			//myDataController.initData();
+			Controller myDataController = myData.getController();
+			myDataController.setStato(status);
+			myDataController.initData();
 			items.add(myData);
 		} catch (Exception e) {
 			e.printStackTrace();
