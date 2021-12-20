@@ -22,9 +22,10 @@ public class ControllerWelcome extends Controller{
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'welcome.fxml'.";
     }
     
-    @Override
+   /* @Override
     public void initData() {
     	name.setText(super.getStato().getName());
 	}
+	*/
 
 }

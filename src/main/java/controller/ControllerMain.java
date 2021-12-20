@@ -37,7 +37,7 @@ public class ControllerMain extends Controller {
 		assert userType != null : "fx:id=\"userType\" was not injected: check your FXML file 'main.fxml'.";
 	}
 	
-	@Override
+/*	@Override
 	public void initData() {
 		Status status = super.getStato();
 		userType.setText(status.getUserType());
@@ -85,5 +85,5 @@ public class ControllerMain extends Controller {
 			}
 		});
 	}
-
+*/
 }
