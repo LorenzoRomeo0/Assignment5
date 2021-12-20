@@ -7,14 +7,13 @@ import javafx.scene.layout.AnchorPane;
 public class Page {
 	private String name;
 	private AnchorPane content;
-	//private Controller controller;
+	private Controller controller;
 
 	public Page(String name, String path) throws Exception {
 		this.name = name;
-		content = FXMLLoader.load(getClass().getResource(path));
-		/*FXMLLoader loader = FXMLLoader.load(getClass().getResource(path));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 		this.content = loader.load();
-		this.controller = loader.getController();*/
+		this.controller = loader.getController();
 	}
 
 	@Override
@@ -26,11 +25,9 @@ public class Page {
 		return content;
 	}
 
-	/*
 	public Controller getController() {
 		return controller;
 	}
-	*/
 
 	public String getName() {
 		return name;

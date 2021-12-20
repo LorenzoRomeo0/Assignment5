@@ -9,12 +9,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class ControllerMain extends Controller {
 
@@ -38,26 +35,18 @@ public class ControllerMain extends Controller {
 		assert actions != null : "fx:id=\"actions\" was not injected: check your FXML file 'main.fxml'.";
 		assert page != null : "fx:id=\"page\" was not injected: check your FXML file 'main.fxml'.";
 		assert userType != null : "fx:id=\"userType\" was not injected: check your FXML file 'main.fxml'.";
-		
-		initData();
 	}
 	
-	
+	@Override
 	public void initData() {
-		Status status = (Status) actions.getScene().getWindow().getUserData();
-		Scene scene = actions.getScene();
-		Window stage = scene.getWindow();
-		
-		
-		
-		//userType.setText(status.getUserType());
+		Status status = super.getStato();
+		userType.setText(status.getUserType());
 		ObservableList<Page> items = actions.getItems();
 		try {
 			Page welcome = new Page("Benvenuto !!!", "../welcome.fxml");
-			//Controller welcomeController = welcome.getController();
-			/*welcomeController.setStato(status);
+			Controller welcomeController = welcome.getController();
+			welcomeController.setStato(status);
 			welcomeController.initData();;
-			*/
 			items.add(welcome);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,7 +84,6 @@ public class ControllerMain extends Controller {
 				}
 			}
 		});
-		
 	}
 
 }
