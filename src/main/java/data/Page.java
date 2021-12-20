@@ -11,7 +11,7 @@ public class Page {
 
 	public Page(String name, String path) throws Exception {
 		this.name = name;
-		FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+		FXMLLoader loader = FXMLLoader.load(getClass().getResource(path));
 		this.content = loader.load();
 		this.controller = loader.getController();
 	}

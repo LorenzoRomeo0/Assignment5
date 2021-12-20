@@ -3,6 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import data.Status;
+
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
@@ -20,6 +22,8 @@ public class ControllerWelcome extends Controller{
     @FXML
     void initialize() {
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'welcome.fxml'.";
+        Status myStatus = (Status) name.getScene().getWindow().getUserData();
+        name.setText(myStatus.getName());
     }
     
    /* @Override

@@ -20,7 +20,7 @@ public class Main extends Application {
     	        .toString();
     	
     	System.out.println("HASH: "+hashed);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        FXMLLoader loader = FXMLLoader.load(getClass().getResource("main.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
     	//controller.setStato();
