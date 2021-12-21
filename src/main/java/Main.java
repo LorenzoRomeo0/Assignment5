@@ -1,4 +1,9 @@
+import java.util.ArrayList;
+
 import controller.Controller;
+import dao.UserDAO;
+import dao.UserDAOImpl;
+import dao.UserDTO;
 import data.Status;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +34,12 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+    	UserDAO userDAO = new UserDAOImpl();
+    	ArrayList<UserDTO> users = userDAO.getAllUsers();
+    	UserDTO lorenzo = userDAO.getUser("Lorenzo Romeo");
+    	System.out.println("Lorenzo: "+ lorenzo.toString()+"\n\n");
+    	for(UserDTO u : users) System.out.println(u.toString());
+    	
         launch(args);
     }
     
