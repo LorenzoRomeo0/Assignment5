@@ -1,9 +1,17 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.google.common.graph.ElementOrder.Type;
+
+import data.Status;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,7 +35,22 @@ public class ControllerLogin {
 
     @FXML
     void onLogin(ActionEvent event) {
-
+    	error.setText("");
+    	if(myUsername.getText() == null || myPassword.getText() == null
+    			|| myPassword.getText().isBlank() || myUsername.getText().isBlank()) {
+    		error.setText("Errore");
+    	}
+    	
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../main.fxml"));
+			Parent root = loader.load();
+			Controller controller = loader.getController();
+			controller.setStato(new Status("lorenza", "romea", "05 ottobre 2000", "filippina", "rmoln00t45f205a", "admin"));
+			controller.initData();		
+	    	myUsername.getScene().setRoot(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     @FXML
