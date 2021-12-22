@@ -98,6 +98,4 @@ public class UserDAOImpl implements UserDAO{
     	        .toString();
 		return password;
 	}
-	
-	
 }
