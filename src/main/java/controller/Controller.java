@@ -1,18 +1,18 @@
 package controller;
 import data.Status;
+import javafx.stage.Stage;
 
 public abstract class Controller {
-	private Status stato;
-
-	public Status getStato() {
-		return stato;
+	
+	private Stage stage;
+	
+	public abstract void initData();
+	
+	public void setStage(Stage stage) {
+	     this.stage = stage;
 	}
 	
-	public void setStato(Status stato) {
-		this.stato = stato;
-	}
-	
-	public void initData() {
-		
+	public Stage getStage() {
+		return stage;
 	}
 }

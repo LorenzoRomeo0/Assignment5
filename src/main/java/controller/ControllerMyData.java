@@ -45,7 +45,7 @@ public class ControllerMyData extends Controller {
     }
 	@Override
 	public void initData() {
-		Status myStatus = super.getStato();
+		Status myStatus = (Status) super.getStage().getUserData();
 		myName.setText(myStatus.getName());
 		mySurname.setText(myStatus.getSurname());
 		myDateOfBirth.setText(myStatus.getDateOfBirth());

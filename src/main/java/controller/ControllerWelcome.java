@@ -2,6 +2,8 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import data.Status;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -24,7 +26,8 @@ public class ControllerWelcome extends Controller {
 
 	@Override
 	public void initData() {
-		name.setText("Benvenuto " + super.getStato().getName() + "!!!");
+		Status status = (Status) super.getStage().getUserData();
+		name.setText("Benvenuto " + status.getName() + "!!!");
 	}
 
 }

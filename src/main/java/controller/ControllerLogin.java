@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class ControllerLogin {
+public class ControllerLogin extends Controller{
 
     @FXML
     private ResourceBundle resources;
@@ -41,18 +41,28 @@ public class ControllerLogin {
     		error.setText("Errore");
     	}
     	
-		try {
+    	
+    	error.getScene().getWindow().setUserData(new Status("lorenza", "romea", "05 ottobre 2000", "filippina", "rmoln00t45f205a", "admin"));
+    	
+    	startMain();
+    }
+
+    private void startMain() {
+    	try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../main.fxml"));
 			Parent root = loader.load();
 			Controller controller = loader.getController();
-			controller.setStato(new Status("lorenza", "romea", "05 ottobre 2000", "filippina", "rmoln00t45f205a", "admin"));
+			
+			controller.setStage(getStage());
 			controller.initData();		
+			
 	    	myUsername.getScene().setRoot(root);
+	    	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
     }
-
+    
     @FXML
     void initialize() {
         assert error != null : "fx:id=\"error\" was not injected: check your FXML file 'login.fxml'.";
@@ -60,5 +70,11 @@ public class ControllerLogin {
         assert myUsername != null : "fx:id=\"myUsername\" was not injected: check your FXML file 'login.fxml'.";
 
     }
+
+	@Override
+	public void initData() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
