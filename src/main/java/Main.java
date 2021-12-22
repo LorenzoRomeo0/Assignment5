@@ -1,8 +1,9 @@
-import java.nio.charset.StandardCharsets;
-
-import com.google.common.hash.Hashing;
+import java.util.ArrayList;
 
 import controller.Controller;
+import dao.UserDAO;
+import dao.UserDAOImpl;
+import dao.UserDTO;
 import data.Status;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,39 +15,31 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-    	
-    	final String hashed = Hashing.sha256()
-    	        .hashString("Ciao", StandardCharsets.UTF_8)
-    	        .toString();
-    	
-    	System.out.println("HASH: "+hashed);
-    	
-    	Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-    	
-    	/*FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         Parent root = loader.load();
-        Controller controller = loader.getController();*/
-        
-    	//controller.setStato();
-    	//controller.initData();
-    	// TODO: rimuovere tutti
-        
-        
-    	primaryStage.setMinWidth(300);
-    	primaryStage.setMinHeight(250);
+        Controller controller = loader.getController();
+    	controller.setStato(new Status("dianka mevan", "fernando", "23 luglio 2000", "italiana", "frndkm00l23f205a", "admin"));
+    	controller.initData();
     	
-    	primaryStage.setWidth(500);
-    	primaryStage.setHeight(450);
+    	primaryStage.setMinWidth(450);
+    	primaryStage.setMinHeight(350);
     	
-    	primaryStage.setUserData(new Status("dianka", "mevan", "23 luglio 2000", "italiana", "frndkm00l23f205a", "admin"));
+    	primaryStage.setWidth(450);
+    	primaryStage.setHeight(350);
     	
         primaryStage.setTitle("Votazione Online");
-        primaryStage.setScene(new Scene(root, 500, 450));
+        primaryStage.setScene(new Scene(root, 450, 350));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
+    	/*UserDAO userDAO = new UserDAOImpl();
+    	ArrayList<UserDTO> users = userDAO.getAllUsers();
+    	UserDTO lorenzo = userDAO.getUser("Lorenzo Romeo");
+    	System.out.println("Lorenzo: "+ lorenzo.toString()+"\n\n");
+    	for(UserDTO u : users) System.out.println(u.toString());*/
+    	
         launch(args);
     }
     

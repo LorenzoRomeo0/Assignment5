@@ -2,13 +2,10 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import data.Status;
-
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 
-public class ControllerWelcome extends Controller{
+public class ControllerWelcome extends Controller {
 
     @FXML
     private ResourceBundle resources;
@@ -17,19 +14,17 @@ public class ControllerWelcome extends Controller{
     private URL location;
 
     @FXML
-    private Text name;
+    private Label name;
 
     @FXML
     void initialize() {
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'welcome.fxml'.";
-        Status myStatus = (Status) name.getScene().getWindow().getUserData();
-        name.setText(myStatus.getName());
+
     }
-    
-   /* @Override
-    public void initData() {
-    	name.setText(super.getStato().getName());
+
+	@Override
+	public void initData() {
+		name.setText("Benvenuto " + super.getStato().getName() + "!!!");
 	}
-	*/
 
 }
