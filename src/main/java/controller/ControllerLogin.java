@@ -18,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class ControllerLogin extends Controller{
 
@@ -40,25 +42,7 @@ public class ControllerLogin extends Controller{
 
     @FXML
     void onLogin(ActionEvent event) {
-    	error.setText("");
-    	if(myUsername.getText() == null || myPassword.getText() == null
-    			|| myPassword.getText().isBlank() || myUsername.getText().isBlank()) {
-    		error.setText("Errore");
-    		return;
-    	}
-    	
-    	String username = myUsername.getText();
-    	String password = myPassword.getText();
-    	
-    	if(userDAO.checkPassword(username, password)) {
-    		stage.setUserData(new Status(
-						//new UserDTO(new BigDecimal(1), "Loren", new Date(2000, 1, 1), "Italia", "Milano", "codiceFiscale", "Admin"))
-						userDAO.getUser(username))
-					);
-
-    		startMain();
-    	}else error.setText("Credenziali errate!");
-    	
+    	login();
     }
 
     private void startMain() {
@@ -90,6 +74,34 @@ public class ControllerLogin extends Controller{
 	public void initData() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+    @FXML
+    void onEnter(KeyEvent event) {
+    	if (event.getCode().equals(KeyCode.ENTER)) {
+			login();
+		}
+    }
+	
+	private void login() {
+		error.setText("");
+    	if(myUsername.getText() == null || myPassword.getText() == null
+    			|| myPassword.getText().isBlank() || myUsername.getText().isBlank()) {
+    		error.setText("Credenziali invalide!");
+    		return;
+    	}
+    	
+    	String username = myUsername.getText();
+    	String password = myPassword.getText();
+    	
+    	if(userDAO.checkPassword(username, password)) {
+    		stage.setUserData(new Status(
+						//new UserDTO(new BigDecimal(1), "Loren", new Date(2000, 1, 1), "Italia", "Milano", "codiceFiscale", "Admin"))
+						userDAO.getUser(username))
+					);
+
+    		startMain();
+    	}else error.setText("Credenziali errate!");
 	}
 
 }

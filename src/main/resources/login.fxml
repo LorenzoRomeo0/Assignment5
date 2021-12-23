@@ -30,7 +30,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="myPassword">
+                  <PasswordField fx:id="myPassword" onKeyPressed="#onEnter">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
