@@ -9,11 +9,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-//import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-//import javafx.stage.Window;
 
 public class ControllerMain extends Controller {
 
@@ -42,18 +40,9 @@ public class ControllerMain extends Controller {
 	
 	@Override
 	public void initData() {
-		//Status status = super.getStato();
-		//userType.setText(status.getUserType());
-		
 		Status st = (Status) getStage().getUserData();
 		
 		userType.setText(st.getUserData().getUserType());
-		//Scene scene = userType.getScene();
-		//Window window = scene.getWindow();
-		//Status st = (Status)window.getUserData();
-		
-		//userType.setText(st.getUserType());
-		
 		ObservableList<Page> items = actions.getItems();
 		try {
 			Page welcome = new Page("Benvenuto !!!", "../welcome.fxml");

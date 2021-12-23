@@ -2,7 +2,6 @@ package dao;
 
 import java.sql.Statement;
 import java.math.BigDecimal;
-//import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -11,9 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//import com.google.common.hash.Hashing;
-
-//mport exceptions.UserNotFoundException;
 
 public class UserDAOImpl implements UserDAO{
 	
@@ -85,7 +81,6 @@ public class UserDAOImpl implements UserDAO{
 				String surname = result.getString("surname");
 				users.add(new UserDTO(USERID, username, name, surname, birthDate, country, comune, codiceFiscale, userType));
 			}
-			//TODO: cambia bit in Byte su tabella sql
 		}catch(Exception e) {e.printStackTrace();}
 		
 	}
@@ -104,19 +99,6 @@ public class UserDAOImpl implements UserDAO{
 		}	
 		return false;
 	}
-	
-	/*
-	private String computeHash(String password, byte salt) {
-		password = Hashing.sha256()
-    	        .hashString(password, StandardCharsets.UTF_8)
-    	        .toString();
-		password += salt+"";
-		password = Hashing.sha256()
-    	        .hashString(password, StandardCharsets.UTF_8)
-    	        .toString();
-		return password;
-	}
-	*/
 	
 	
 }

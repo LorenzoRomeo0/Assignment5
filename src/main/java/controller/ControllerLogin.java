@@ -1,15 +1,8 @@
 package controller;
 
 import java.io.IOException;
-//import java.math.BigDecimal;
 import java.net.URL;
-//import java.sql.Date;
 import java.util.ResourceBundle;
-
-
-import dao.UserDAO;
-import dao.UserDAOImpl;
-//import dao.UserDTO;
 import data.Status;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,10 +13,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import model.ModelLogin;
 
 public class ControllerLogin extends Controller{
 
-	private UserDAO userDAO;
+	private ModelLogin model;
 	
     @FXML
     private ResourceBundle resources;
@@ -67,14 +61,11 @@ public class ControllerLogin extends Controller{
         assert myPassword != null : "fx:id=\"myPassword\" was not injected: check your FXML file 'login.fxml'.";
         assert myUsername != null : "fx:id=\"myUsername\" was not injected: check your FXML file 'login.fxml'.";
         
-        userDAO = new UserDAOImpl();
+       model = new ModelLogin();
     }
 
 	@Override
-	public void initData() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void initData() {}
 	
     @FXML
     void onEnter(KeyEvent event) {
@@ -94,11 +85,8 @@ public class ControllerLogin extends Controller{
     	String username = myUsername.getText();
     	String password = myPassword.getText();
     	
-    	if(userDAO.checkPassword(username, password)) {
-    		stage.setUserData(new Status(
-						//new UserDTO(new BigDecimal(1), "Loren", new Date(2000, 1, 1), "Italia", "Milano", "codiceFiscale", "Admin"))
-						userDAO.getUser(username))
-					);
+    	if(model.login(username, password)) {
+    		stage.setUserData(new Status(model.getUser(username)));
 
     		startMain();
     	}else error.setText("Credenziali errate!");

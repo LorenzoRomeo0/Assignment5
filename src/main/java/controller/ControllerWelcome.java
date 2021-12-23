@@ -21,7 +21,6 @@ public class ControllerWelcome extends Controller {
     @FXML
     void initialize() {
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'welcome.fxml'.";
-
     }
 
 	@Override
