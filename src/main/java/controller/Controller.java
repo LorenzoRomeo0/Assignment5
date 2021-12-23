@@ -1,10 +1,9 @@
 package controller;
-import data.Status;
 import javafx.stage.Stage;
 
 public abstract class Controller {
 	
-	private Stage stage;
+	protected Stage stage;
 	
 	public abstract void initData();
 	

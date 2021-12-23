@@ -1,15 +1,27 @@
 package data;
 
+import dao.UserDTO;
+
 public class Status {
 
-	private String name;
+	/*private String name;
 	private String surname;
-	private String dateOfBirth;
+	private Date dateOfBirth;
 	private String nationality;
 	private String codiceFiscale;
 	private String userType;
+	*/
+	UserDTO userData;
 
-	public Status(String name, String surname, String dateOfBirth, String nationality, String codiceFiscale,
+	public Status(UserDTO userData) {
+		this.userData = userData;
+	}
+	
+	public UserDTO getUserData() {
+		return userData;
+	}
+	
+	/*public Status(String name, String surname, Date dateOfBirth, String nationality, String codiceFiscale,
 			String userType) {
 		this.name = name;
 		this.surname = surname;
@@ -35,11 +47,11 @@ public class Status {
 		this.surname = surname;
 	}
 
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -66,7 +78,7 @@ public class Status {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-	
+	*/
 	
 
 }

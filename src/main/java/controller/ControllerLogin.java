@@ -1,23 +1,28 @@
 package controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 
-import com.google.common.graph.ElementOrder.Type;
 
+import dao.UserDAO;
+import dao.UserDAOImpl;
+import dao.UserDTO;
 import data.Status;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class ControllerLogin extends Controller{
 
+	private UserDAO userDAO;
+	
     @FXML
     private ResourceBundle resources;
 
@@ -39,12 +44,21 @@ public class ControllerLogin extends Controller{
     	if(myUsername.getText() == null || myPassword.getText() == null
     			|| myPassword.getText().isBlank() || myUsername.getText().isBlank()) {
     		error.setText("Errore");
+    		return;
     	}
     	
+    	String username = myUsername.getText();
+    	String password = myPassword.getText();
     	
-    	error.getScene().getWindow().setUserData(new Status("lorenza", "romea", "05 ottobre 2000", "filippina", "rmoln00t45f205a", "admin"));
+    	if(userDAO.checkPassword(username, password)) {
+    		stage.setUserData(new Status(
+						//new UserDTO(new BigDecimal(1), "Loren", new Date(2000, 1, 1), "Italia", "Milano", "codiceFiscale", "Admin"))
+						userDAO.getUser(username))
+					);
+
+    		startMain();
+    	}else error.setText("Credenziali errate!");
     	
-    	startMain();
     }
 
     private void startMain() {
@@ -68,7 +82,8 @@ public class ControllerLogin extends Controller{
         assert error != null : "fx:id=\"error\" was not injected: check your FXML file 'login.fxml'.";
         assert myPassword != null : "fx:id=\"myPassword\" was not injected: check your FXML file 'login.fxml'.";
         assert myUsername != null : "fx:id=\"myUsername\" was not injected: check your FXML file 'login.fxml'.";
-
+        
+        userDAO = new UserDAOImpl();
     }
 
 	@Override

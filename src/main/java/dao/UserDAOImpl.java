@@ -2,7 +2,7 @@ package dao;
 
 import java.sql.Statement;
 import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
+//import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -11,7 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.google.common.hash.Hashing;
+//import com.google.common.hash.Hashing;
+
+import exceptions.UserNotFoundException;
 
 public class UserDAOImpl implements UserDAO{
 	
@@ -39,20 +41,19 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	public UserDTO getUser(String username) {
-		String sql = "SELECT * FROM users WHERE username = ?";
+		String sql = "SELECT USERID, username, birthDate, country, comune, codiceFiscale, userType FROM users WHERE username = ?";
 		try {
 			PreparedStatement s = conn.prepareStatement(sql);
 			s.setString(1, username);
 			ResultSet result = s.executeQuery();
 			if(result.next()) {
 				BigDecimal USERID = result.getBigDecimal("USERID");
-				String password = result.getString("password");
-				byte[] salt = result.getBytes("salt");
 				Date birthDate = result.getDate("birthDate");
 				String country = result.getString("country");
 				String comune = result.getString("comune");
 				String codiceFiscale = result.getString("codiceFiscale");
-				UserDTO userDTO = new UserDTO(USERID, username, password, salt, birthDate, country, comune, codiceFiscale);
+				String userType = result.getString("userType");
+				UserDTO userDTO = new UserDTO(USERID, username, birthDate, country, comune, codiceFiscale, userType);
 				return userDTO;
 			}
 		}catch(Exception e) {e.printStackTrace();}
@@ -65,7 +66,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	public void update() {
-		String sql = "SELECT * FROM users";
+		String sql = "SELECT USERID, username, birthDate, country, comune, codiceFiscale, userType FROM users";
 		users = new ArrayList<UserDTO>();
 		try {
 			Statement s = conn.createStatement();
@@ -73,13 +74,12 @@ public class UserDAOImpl implements UserDAO{
 			while(result.next()) {
 				BigDecimal USERID = result.getBigDecimal("USERID");
 				String username = result.getString("username");
-				String password = result.getString("password");
-				byte salt[] = result.getBytes("salt");
 				Date birthDate = result.getDate("birthDate");
 				String country = result.getString("country");
 				String comune = result.getString("comune");
 				String codiceFiscale = result.getString("codiceFiscale");
-				users.add(new UserDTO(USERID, username, password, salt, birthDate, country, comune, codiceFiscale));
+				String userType = result.getString("userType");
+				users.add(new UserDTO(USERID, username, birthDate, country, comune, codiceFiscale, userType));
 			}
 			
 			//TODO: cambia bit in Byte su tabella sql
@@ -87,6 +87,23 @@ public class UserDAOImpl implements UserDAO{
 		
 	}
 	
+	public boolean checkPassword(String username, String insertedPassword){
+		String sql = "SELECT username, salt FROM users WHERE username = ? AND password = SHA1(concat(SHA1(?), salt))";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, insertedPassword);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) return true;
+			else return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		return false;
+	}
+	
+	/*
 	private String computeHash(String password, byte salt) {
 		password = Hashing.sha256()
     	        .hashString(password, StandardCharsets.UTF_8)
@@ -97,6 +114,7 @@ public class UserDAOImpl implements UserDAO{
     	        .toString();
 		return password;
 	}
+	*/
 	
 	
 }

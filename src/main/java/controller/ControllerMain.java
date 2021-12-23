@@ -47,10 +47,12 @@ public class ControllerMain extends Controller {
 		
 		Status st = (Status) getStage().getUserData();
 		
+		userType.setText(st.getUserData().getUserType());
 		//Scene scene = userType.getScene();
 		//Window window = scene.getWindow();
 		//Status st = (Status)window.getUserData();
-		userType.setText(st.getUserType());
+		
+		//userType.setText(st.getUserType());
 		
 		ObservableList<Page> items = actions.getItems();
 		try {

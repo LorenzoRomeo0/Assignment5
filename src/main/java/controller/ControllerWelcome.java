@@ -27,7 +27,7 @@ public class ControllerWelcome extends Controller {
 	@Override
 	public void initData() {
 		Status status = (Status) super.getStage().getUserData();
-		name.setText("Benvenuto " + status.getName() + "!!!");
+		name.setText("Benvenuto " + status.getUserData().getUsername() + "!!!");
 	}
 
 }

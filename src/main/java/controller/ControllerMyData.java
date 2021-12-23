@@ -46,11 +46,11 @@ public class ControllerMyData extends Controller {
 	@Override
 	public void initData() {
 		Status myStatus = (Status) super.getStage().getUserData();
-		myName.setText(myStatus.getName());
-		mySurname.setText(myStatus.getSurname());
-		myDateOfBirth.setText(myStatus.getDateOfBirth());
-		myNationality.setText(myStatus.getNationality());
-		myCodiceFiscale.setText(myStatus.getCodiceFiscale());
-		myUserType.setText(myStatus.getUserType());
+		myName.setText(myStatus.getUserData().getUsername());
+		mySurname.setText(myStatus.getUserData().getUsername());
+		myDateOfBirth.setText(myStatus.getUserData().getBirthDate().toString());
+		myNationality.setText(myStatus.getUserData().getCountry());
+		myCodiceFiscale.setText(myStatus.getUserData().getCodiceFiscale());
+		myUserType.setText(myStatus.getUserData().getUserType());
 	}
 }
