@@ -6,15 +6,19 @@ import java.sql.Date;
 public class UserDTO {
 	private BigDecimal USERID;
 	private String username;
+	private String name;
+	private String surname;
 	private Date birthDate;
 	private String country;
 	private String comune;
 	private String codiceFiscale;
 	private String userType;
 	
-	public UserDTO(BigDecimal USERID, String username, Date birthDate, String country, String comune, String codiceFiscale, String userType){
+	public UserDTO(BigDecimal USERID, String username,String name, String surname, Date birthDate, String country, String comune, String codiceFiscale, String userType){
 		this.USERID = USERID;
 		this.username = username;
+		this.name = name;
+		this.surname = surname;
 		this.birthDate = birthDate;
 		this.country = country;
 		this.comune = comune;
@@ -23,6 +27,26 @@ public class UserDTO {
 	}
 
 	
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getSurname() {
+		return surname;
+	}
+
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+
 	public BigDecimal getUSERID() {
 		return USERID;
 	}

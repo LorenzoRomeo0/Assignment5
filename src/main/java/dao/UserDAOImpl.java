@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 //import com.google.common.hash.Hashing;
 
-import exceptions.UserNotFoundException;
+//mport exceptions.UserNotFoundException;
 
 public class UserDAOImpl implements UserDAO{
 	
@@ -41,7 +41,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	public UserDTO getUser(String username) {
-		String sql = "SELECT USERID, username, birthDate, country, comune, codiceFiscale, userType FROM users WHERE username = ?";
+		String sql = "SELECT USERID, username, birthDate, country, comune, codiceFiscale, userType, name, surname FROM users WHERE username = ?";
 		try {
 			PreparedStatement s = conn.prepareStatement(sql);
 			s.setString(1, username);
@@ -53,7 +53,9 @@ public class UserDAOImpl implements UserDAO{
 				String comune = result.getString("comune");
 				String codiceFiscale = result.getString("codiceFiscale");
 				String userType = result.getString("userType");
-				UserDTO userDTO = new UserDTO(USERID, username, birthDate, country, comune, codiceFiscale, userType);
+				String name = result.getString("name");
+				String surname = result.getString("surname");
+				UserDTO userDTO = new UserDTO(USERID, username, name, surname, birthDate, country, comune, codiceFiscale, userType);
 				return userDTO;
 			}
 		}catch(Exception e) {e.printStackTrace();}
@@ -66,7 +68,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	public void update() {
-		String sql = "SELECT USERID, username, birthDate, country, comune, codiceFiscale, userType FROM users";
+		String sql = "SELECT USERID, username, birthDate, country, comune, codiceFiscale, userType, name, surname FROM users";
 		users = new ArrayList<UserDTO>();
 		try {
 			Statement s = conn.createStatement();
@@ -79,9 +81,10 @@ public class UserDAOImpl implements UserDAO{
 				String comune = result.getString("comune");
 				String codiceFiscale = result.getString("codiceFiscale");
 				String userType = result.getString("userType");
-				users.add(new UserDTO(USERID, username, birthDate, country, comune, codiceFiscale, userType));
+				String name = result.getString("name");
+				String surname = result.getString("surname");
+				users.add(new UserDTO(USERID, username, name, surname, birthDate, country, comune, codiceFiscale, userType));
 			}
-			
 			//TODO: cambia bit in Byte su tabella sql
 		}catch(Exception e) {e.printStackTrace();}
 		
@@ -99,7 +102,6 @@ public class UserDAOImpl implements UserDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
-		
 		return false;
 	}
 	
